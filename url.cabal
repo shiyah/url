@@ -1,0 +1,68 @@
+name:                url
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            
+license:             BSD3
+license-file:        LICENSE
+author:              Cristian Yost
+maintainer:          shiyah@theidio.tech
+copyright:           2018 Cristian Yost
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+                     , src/db
+                     , src/util
+  exposed-modules:     Lib
+                     , DbHandler
+                     , Model
+  build-depends:       base
+                     , aeson
+                     , servant
+                     , servant-server
+                     , persistent
+                     , persistent-sqlite
+                     , persistent-template
+                     , text
+                     , wai
+                     , monad-logger
+                     , wai-extra
+                     , resource-pool
+                     , mtl
+  ghc-options:
+    -Wall
+    -fwarn-tabs
+    -fwarn-unused-imports
+    -fwarn-name-shadowing
+    -fwarn-incomplete-patterns
+    -fwarn-overlapping-patterns
+  default-language:    Haskell2010
+
+executable url-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , url
+                     , servant
+                     , servant-server
+                     , text
+                     , warp
+                     , mtl
+                     , persistent
+  ghc-options:
+    -Wall
+    -fwarn-tabs
+    -fwarn-unused-imports
+    -fwarn-name-shadowing
+    -fwarn-incomplete-patterns
+    -fwarn-overlapping-patterns
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/shiyah/resume-hosting

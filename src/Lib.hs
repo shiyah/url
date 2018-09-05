@@ -26,7 +26,7 @@ postUrl l = do maybeLink <- queryDb (getBy $ UniqueUrl l)
 getUrl :: Text -> App Text
 getUrl sl = do let dbid = decimal sl
                case dbid of Right (a, _) -> do l <- queryDb $ get $ toSqlKey a
-                                               case l of Just b -> throwError $ err301 { errHeaders = [("Location", encodeUtf8 $ urlLink b)] }
+                                               case l of Just b -> throwError $ err302 { errHeaders = [("Location", encodeUtf8 $ urlLink b)] }
                                                          Nothing -> throwError err404
                             Left _       -> throwError err400
 
